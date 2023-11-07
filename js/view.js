@@ -1,7 +1,13 @@
 function updateView() {
+    const app = document.getElementById('app');
     const id = model.selectedPersonId;
+    if (id == null) {
+        app.innerHTML = createFullHtmlForPerson(8);
+        return;
+    } 
     const person = findPersonById(id);
-    document.getElementById('app').innerHTML = /*HTML*/`
+    app.innerHTML = /*HTML*/`
+        <button onclick="selectPerson(null)">vis alle</button>
         ${createHtmlForPerson(id, '', 'h3', false)}
         ${createHtmlForPerson(person.mother, 'Mor:', 'p', true)}
         ${createHtmlForPerson(person.father, 'Far:', 'p', true)}  
